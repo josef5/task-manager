@@ -1,11 +1,10 @@
-import type { Task } from "../types";
-import { useStore } from "../store";
+import { addTask, useStore } from "../store";
 import TaskContainer from "./TaskContainer";
 import React from "react";
 
 const TaskList: React.FunctionComponent = () => {
   const [store, setStore] = useStore();
-  const { tasks }: { tasks: Task[] } = store;
+  const { tasks } = store;
 
   return (
     <div>

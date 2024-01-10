@@ -1,19 +1,6 @@
 import React from "react";
 import StoreContext from "./components/StoreContext";
-
-interface Store {
-  tasks: Task[];
-  /* itemsNum: number;
-  total: number; */
-}
-
-export type Task = {
-  taskId: number;
-  priority: string;
-  taskStatus: string;
-  assignedto: string;
-  tasksummary: string;
-};
+import { Store, Task, TaskData } from "./types";
 
 const store: Store = {
   tasks: [

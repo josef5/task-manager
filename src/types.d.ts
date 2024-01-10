@@ -2,10 +2,13 @@ export interface Store {
   tasks: Task[];
 }
 
-export type Task = {
-  taskId: number;
+export type TaskData = {
   priority: string;
   taskStatus: string;
   assignedto: string;
   tasksummary: string;
+};
+
+export type Task = TaskData & {
+  taskId: number;
 };
