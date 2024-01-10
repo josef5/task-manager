@@ -12,7 +12,20 @@ const TaskList: React.FunctionComponent = () => {
         <TaskContainer key={task.taskId} task={task} />
       ))}
       <hr />
-      <button onClick={() => setStore({ tasks: [] })}>Add task</button>
+      <button
+        onClick={async () =>
+          setStore(
+            await addTask({
+              priority: "3",
+              taskStatus: "3",
+              assignedto: "3",
+              tasksummary: "3",
+            })
+          )
+        }
+      >
+        Add task
+      </button>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import type { Task } from "../types";
-import { useStore } from "../store";
+import { updateTask, useStore } from "../store";
 import { deleteTask } from "../store";
 
 interface TaskContainerProps {
@@ -15,6 +15,21 @@ const TaskContainer: React.FunctionComponent<TaskContainerProps> = ({
   return (
     <>
       <pre>{JSON.stringify(task, null, 2)}</pre>
+      <button
+        onClick={async () => {
+          setStore(
+            await updateTask({
+              taskId: task.taskId,
+              priority: "10",
+              taskStatus: "10",
+              assignedto: "10",
+              tasksummary: "10",
+            })
+          );
+        }}
+      >
+        Update
+      </button>
       <button
         onClick={async () => {
           setStore(await deleteTask(task.taskId));

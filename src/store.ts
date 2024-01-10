@@ -27,15 +27,38 @@ export const useStore = () => {
   if (!context) {
     throw new Error("useStore must be used within a StoreProvider");
   }
+
   return context;
+};
+
+const getNewId = () => {
+  const highestId = store.tasks.reduce(
+    (acc, task) => (task.taskId > acc ? task.taskId : acc),
+    0
+  );
+
+  return highestId + 1;
 };
 
 export const getStore = async (): Promise<Store> => {
   return store;
 };
 
-export const addTask = async (task: Task): Promise<Store> => {
-  store.tasks.push(task);
+export const addTask = async (taskData: TaskData): Promise<Store> => {
+  const newId = getNewId();
+  store.tasks.push({ ...taskData, taskId: newId });
+
+  return { ...store };
+};
+
+export const updateTask = async (updatedTask: Task): Promise<Store> => {
+  const currentTaskIndex = store.tasks.findIndex(
+    (task) => task.taskId === updatedTask.taskId
+  );
+
+  if (currentTaskIndex !== -1) {
+    store.tasks.splice(currentTaskIndex, 1, updatedTask);
+  }
 
   return { ...store };
 };
