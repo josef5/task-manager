@@ -1,3 +1,6 @@
+import React from "react";
+import StoreContext from "./components/StoreContext";
+
 interface Store {
   tasks: Task[];
   /* itemsNum: number;
@@ -29,6 +32,15 @@ const store: Store = {
       tasksummary: "2",
     },
   ],
+};
+
+export const useStore = () => {
+  const context = React.useContext(StoreContext);
+
+  if (!context) {
+    throw new Error("useStore must be used within a StoreProvider");
+  }
+  return context;
 };
 
 export const getStore = async (): Promise<Store> => {

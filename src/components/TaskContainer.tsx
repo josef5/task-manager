@@ -1,6 +1,6 @@
 import React from "react";
 import type { Task } from "../types";
-import { useStore } from "./StoreContext";
+import { useStore } from "../store";
 import { deleteTask } from "../store";
 
 interface TaskContainerProps {

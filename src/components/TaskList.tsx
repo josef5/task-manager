@@ -1,5 +1,5 @@
 import type { Task } from "../types";
-import { useStore } from "./StoreContext";
+import { useStore } from "../store";
 import TaskContainer from "./TaskContainer";
 import React from "react";
 

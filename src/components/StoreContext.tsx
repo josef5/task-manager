@@ -23,13 +23,4 @@ export const StoreProvider = ({
   );
 };
 
-export const useStore = () => {
-  const context = React.useContext(StoreContext);
-
-  if (!context) {
-    throw new Error("useStore must be used within a StoreProvider");
-  }
-  return context;
-};
-
 export default StoreContext;
