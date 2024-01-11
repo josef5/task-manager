@@ -1,4 +1,5 @@
 import { useStore } from "../store";
+import { ModalType } from "../types";
 import { useModal } from "./ModalContext";
 import TaskContainer from "./TaskContainer";
 import React from "react";
@@ -14,7 +15,9 @@ const TaskList: React.FunctionComponent = () => {
         <TaskContainer key={task.taskId} task={task} />
       ))}
       <hr />
-      <button onClick={() => openModal({ title: "add", task: null })}>
+      <button
+        onClick={() => openModal({ type: ModalType.ADD_NEW_TASK, task: null })}
+      >
         Add task
       </button>
     </div>

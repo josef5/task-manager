@@ -2,7 +2,7 @@
 import React, { FormEvent, useEffect } from "react";
 import { useModal } from "./ModalContext";
 import { updateTaskList, useStore } from "../store";
-import { Task, TaskData, TaskStatus } from "../types";
+import { ModalType, Task, TaskData, TaskStatus } from "../types";
 
 const Modal: React.FC = () => {
   const { modalData, closeModal } = useModal();
@@ -37,6 +37,9 @@ const Modal: React.FC = () => {
     setStore(await updateTaskList(task));
   };
 
+  const title =
+    modalData?.type === ModalType.ADD_NEW_TASK ? "Add task" : "Edit task";
+
   useEffect(() => {
     setTaskSummary(modalData?.task?.tasksummary ?? "");
     setPriority(modalData?.task?.priority ?? "");
@@ -48,7 +51,7 @@ const Modal: React.FC = () => {
     <div>
       {modalData && (
         <div>
-          <h3>{modalData.title ?? "no title data"}</h3>
+          <h3>{title}</h3>
           <form onSubmit={handleSubmit}>
             {modalData.task?.taskId && <p>taskId: {modalData.task.taskId}</p>}
             <label htmlFor="summary">Summary:</label>

@@ -1,5 +1,5 @@
 import React from "react";
-import type { Task } from "../types";
+import { ModalType, type Task } from "../types";
 import { useStore, deleteTask } from "../store";
 import { useModal } from "./ModalContext";
 
@@ -16,7 +16,11 @@ const TaskContainer: React.FunctionComponent<TaskContainerProps> = ({
   return (
     <>
       <pre>{JSON.stringify(task, null, 2)}</pre>
-      <button onClick={() => openModal({ title: "edit", task })}>Edit</button>
+      <button
+        onClick={() => openModal({ type: ModalType.EDIT_EXISTING_TASK, task })}
+      >
+        Edit
+      </button>
       <button onClick={async () => setStore(await deleteTask(task.taskId))}>
         Delete
       </button>
