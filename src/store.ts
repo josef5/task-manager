@@ -63,6 +63,29 @@ export const updateTask = async (updatedTask: Task): Promise<Store> => {
   return { ...store };
 };
 
+export const updateTasks = async (task: Task | TaskData): Promise<Store> => {
+  // An existing task has an id, a new task has none
+  const isCurrentTask = "taskId" in task && task.taskId !== undefined;
+
+  if (isCurrentTask) {
+    console.log("task.taskId :", task.taskId);
+    // task is of type Task
+    const currentTaskIndex = store.tasks.findIndex(
+      (t) => t.taskId === task.taskId
+    );
+
+    if (currentTaskIndex !== -1) {
+      store.tasks.splice(currentTaskIndex, 1, task);
+    }
+  } else {
+    // task is of type TaskData
+    const newId = getNewId();
+    store.tasks.push({ ...task, taskId: newId });
+  }
+
+  return { ...store };
+};
+
 export const deleteTask = async (taskId: number): Promise<Store> => {
   store.tasks = store.tasks.filter((task) => task.taskId !== taskId);
 
