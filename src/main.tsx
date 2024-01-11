@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { getStore } from "./store.ts";
 import { StoreProvider } from "./components/StoreContext.tsx";
+import "./index.css";
 
 async function renderApp() {
   const store = await getStore();
