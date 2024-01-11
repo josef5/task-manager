@@ -7,7 +7,7 @@ interface TaskContainerProps {
   task: Task;
 }
 
-const TaskContainer: React.FunctionComponent<TaskContainerProps> = ({
+const TaskListItem: React.FunctionComponent<TaskContainerProps> = ({
   task,
 }) => {
   const [, setStore] = useStore();
@@ -15,7 +15,12 @@ const TaskContainer: React.FunctionComponent<TaskContainerProps> = ({
 
   return (
     <>
-      <pre>{JSON.stringify(task, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(task, null, 2)}</pre> */}
+      <div>Task Id: {task.taskId}</div>
+      <div>Summary: {task.tasksummary}</div>
+      <div>Priority: {task.priority}</div>
+      <div>Assigned to: {task.assignedto}</div>
+      <div>Status: {task.taskStatus}</div>
       <button
         onClick={() => openModal({ type: ModalType.EDIT_EXISTING_TASK, task })}
       >
@@ -28,4 +33,4 @@ const TaskContainer: React.FunctionComponent<TaskContainerProps> = ({
   );
 };
 
-export default TaskContainer;
+export default TaskListItem;

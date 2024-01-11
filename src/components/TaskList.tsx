@@ -1,7 +1,7 @@
 import { useStore } from "../store";
 import { ModalType } from "../types";
 import { useModal } from "./ModalContext";
-import TaskContainer from "./TaskContainer";
+import TaskListItem from "./TaskListItem";
 import React from "react";
 
 const TaskList: React.FunctionComponent = () => {
@@ -12,13 +12,13 @@ const TaskList: React.FunctionComponent = () => {
   return (
     <div>
       {tasks.map((task) => (
-        <TaskContainer key={task.taskId} task={task} />
+        <TaskListItem key={task.taskId} task={task} />
       ))}
       <hr />
       <button
         onClick={() => openModal({ type: ModalType.ADD_NEW_TASK, task: null })}
       >
-        Add task
+        Add Task
       </button>
     </div>
   );
