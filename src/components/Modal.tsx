@@ -1,7 +1,7 @@
 // Modal.tsx
 import React, { FormEvent, useEffect } from "react";
 import { useModal } from "./ModalContext";
-import { updateTasks, useStore } from "../store";
+import { updateTaskList, useStore } from "../store";
 import { Task, TaskData } from "../types";
 
 const Modal: React.FC = () => {
@@ -26,11 +26,6 @@ const Modal: React.FC = () => {
 
     const formData = new FormData(event.currentTarget as HTMLFormElement);
 
-    console.log(
-      "formData :",
-      JSON.stringify(Object.fromEntries(formData.entries()))
-    );
-
     const task: Task | TaskData = {
       taskId: modalData?.task?.taskId,
       priority: formData.get("priority") as string,
@@ -39,18 +34,14 @@ const Modal: React.FC = () => {
       tasksummary: formData.get("tasksummary") as string,
     };
 
-    setStore(await updateTasks(task));
+    setStore(await updateTaskList(task));
   };
 
   useEffect(() => {
-    console.log("modalData :", modalData);
-
-    // if (modalData?.task) {
     setTaskSummary(modalData?.task?.tasksummary ?? "");
     setPriority(modalData?.task?.priority ?? "");
     setTaskStatus(modalData?.task?.taskStatus ?? "");
     setAssignedTo(modalData?.task?.assignedto ?? "");
-    // }
   }, [modalData]);
 
   return (
@@ -59,12 +50,13 @@ const Modal: React.FC = () => {
         <div>
           <h3>{modalData.title ?? "no title data"}</h3>
           <form onSubmit={handleSubmit}>
+            {modalData.task?.taskId && <p>taskId: {modalData.task.taskId}</p>}
             <label htmlFor="summary">Summary:</label>
             <input
               type="text"
               name="tasksummary"
               value={tasksummary}
-              onChange={(e) => setTaskSummary(e.target.value)}
+              onChange={(event) => setTaskSummary(event.target.value)}
               required
             />
             <label htmlFor="priority">Priority:</label>
@@ -72,7 +64,7 @@ const Modal: React.FC = () => {
               type="text"
               name="priority"
               value={priority}
-              onChange={(e) => setPriority(e.target.value)}
+              onChange={(event) => setPriority(event.target.value)}
               required
             />
             <label htmlFor="taskStatus">Task Status:</label>
@@ -80,7 +72,7 @@ const Modal: React.FC = () => {
               type="text"
               name="taskStatus"
               value={taskStatus}
-              onChange={(e) => setTaskStatus(e.target.value)}
+              onChange={(event) => setTaskStatus(event.target.value)}
               required
             />
             <label htmlFor="assignedto">Assigned To:</label>
@@ -88,7 +80,7 @@ const Modal: React.FC = () => {
               type="text"
               name="assignedto"
               value={assignedto}
-              onChange={(e) => setAssignedTo(e.target.value)}
+              onChange={(event) => setAssignedTo(event.target.value)}
             />
             <button type="submit">Submit</button>
           </form>
