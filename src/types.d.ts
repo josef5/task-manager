@@ -12,3 +12,8 @@ export type TaskData = {
 export type Task = TaskData & {
   taskId: number;
 };
+
+export type ModalData = {
+  title: string;
+  task: Task | null;
+};

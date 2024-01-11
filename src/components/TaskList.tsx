@@ -1,10 +1,12 @@
-import { addTask, useStore } from "../store";
+import { useStore } from "../store";
+import { useModal } from "./ModalContext";
 import TaskContainer from "./TaskContainer";
 import React from "react";
 
 const TaskList: React.FunctionComponent = () => {
-  const [store, setStore] = useStore();
+  const [store] = useStore();
   const { tasks } = store;
+  const { openModal } = useModal();
 
   return (
     <div>
@@ -12,18 +14,7 @@ const TaskList: React.FunctionComponent = () => {
         <TaskContainer key={task.taskId} task={task} />
       ))}
       <hr />
-      <button
-        onClick={async () =>
-          setStore(
-            await addTask({
-              priority: "3",
-              taskStatus: "3",
-              assignedto: "3",
-              tasksummary: "3",
-            })
-          )
-        }
-      >
+      <button onClick={() => openModal({ title: "add", task: null })}>
         Add task
       </button>
     </div>

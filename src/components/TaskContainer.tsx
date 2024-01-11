@@ -1,7 +1,7 @@
 import React from "react";
 import type { Task } from "../types";
-import { updateTask, useStore } from "../store";
-import { deleteTask } from "../store";
+import { useStore, deleteTask } from "../store";
+import { useModal } from "./ModalContext";
 
 interface TaskContainerProps {
   task: Task;
@@ -11,30 +11,13 @@ const TaskContainer: React.FunctionComponent<TaskContainerProps> = ({
   task,
 }) => {
   const [, setStore] = useStore();
+  const { openModal } = useModal();
 
   return (
     <>
       <pre>{JSON.stringify(task, null, 2)}</pre>
-      <button
-        onClick={async () => {
-          setStore(
-            await updateTask({
-              taskId: task.taskId,
-              priority: "10",
-              taskStatus: "10",
-              assignedto: "10",
-              tasksummary: "10",
-            })
-          );
-        }}
-      >
-        Update
-      </button>
-      <button
-        onClick={async () => {
-          setStore(await deleteTask(task.taskId));
-        }}
-      >
+      <button onClick={() => openModal({ title: "edit", task })}>Edit</button>
+      <button onClick={async () => setStore(await deleteTask(task.taskId))}>
         Delete
       </button>
     </>
