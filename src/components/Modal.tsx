@@ -2,7 +2,7 @@
 import React, { FormEvent, useEffect } from "react";
 import { useModal } from "./ModalContext";
 import { updateTaskList, useStore } from "../store";
-import { Task, TaskData } from "../types";
+import { Task, TaskData, TaskStatus } from "../types";
 
 const Modal: React.FC = () => {
   const { modalData, closeModal } = useModal();
@@ -29,7 +29,7 @@ const Modal: React.FC = () => {
     const task: Task | TaskData = {
       taskId: modalData?.task?.taskId,
       priority: formData.get("priority") as string,
-      taskStatus: formData.get("taskStatus") as string,
+      taskStatus: formData.get("taskStatus") as TaskStatus,
       assignedto: formData.get("assignedto") as string,
       tasksummary: formData.get("tasksummary") as string,
     };
@@ -68,13 +68,18 @@ const Modal: React.FC = () => {
               required
             />
             <label htmlFor="taskStatus">Task Status:</label>
-            <input
-              type="text"
+            <select
               name="taskStatus"
               value={taskStatus}
               onChange={(event) => setTaskStatus(event.target.value)}
               required
-            />
+            >
+              <option value={TaskStatus.UNASSIGNED}>Unassigned</option>
+              <option value={TaskStatus.LOW}>Low</option>
+              <option value={TaskStatus.MEDIUM}>Medium</option>
+              <option value={TaskStatus.HIGH}>High</option>
+            </select>
+
             <label htmlFor="assignedto">Assigned To:</label>
             <input
               type="text"

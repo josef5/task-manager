@@ -1,20 +1,20 @@
 import React from "react";
 import StoreContext from "./components/StoreContext";
-import { Store, Task, TaskData } from "./types";
+import { Store, Task, TaskData, TaskStatus } from "./types";
 
 const store: Store = {
   tasks: [
     {
       taskId: 1,
       priority: "1",
-      taskStatus: "1",
+      taskStatus: TaskStatus.UNASSIGNED,
       assignedto: "1",
       tasksummary: "1",
     },
     {
       taskId: 2,
       priority: "2",
-      taskStatus: "2",
+      taskStatus: TaskStatus.MEDIUM,
       assignedto: "2",
       tasksummary: "2",
     },
