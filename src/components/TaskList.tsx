@@ -9,6 +9,9 @@ const TaskList: React.FunctionComponent = () => {
   const { tasks } = store;
   const { openModal } = useModal();
 
+  /**
+   * Renders the list of tasks. Fallback message if no tasks are found.
+   */
   return (
     <div className="p-20">
       <h1 className="text-3xl font-bold">Tasks</h1>

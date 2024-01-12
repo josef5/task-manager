@@ -21,6 +21,10 @@ const Modal: React.FC = () => {
     modalData?.task?.assignedto ?? ""
   );
 
+  /**
+   * Handles the form submission
+   * @param event - The form event
+   */
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 

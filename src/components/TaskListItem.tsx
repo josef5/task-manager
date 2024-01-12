@@ -13,9 +13,12 @@ const TaskListItem: React.FunctionComponent<TaskContainerProps> = ({
   const [, setStore] = useStore();
   const { openModal } = useModal();
 
+  /**
+   * Renders a single task item in the list
+   * @param task - The task to be rendered
+   */
   return (
     <div className="border-solid border-[0px] border-gray-500 rounded-lg p-5 my-5 bg-white/[.05]">
-      {/* <pre>{JSON.stringify(task, null, 2)}</pre> */}
       <h3 className="text-xl mb-3">{task.tasksummary}</h3>
       <div className="flex items-center text-sm text-gray-400">
         <div className="flex-1">Task Id: {task.taskId}</div>

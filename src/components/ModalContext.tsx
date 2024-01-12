@@ -7,8 +7,14 @@ interface ModalContextProps {
   closeModal: () => void;
 }
 
+/**
+ * Context for managing modals
+ */
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
+/**
+ * Custom hook to access the modal context
+ */
 export function useModal() {
   const context = useContext(ModalContext);
 
@@ -19,6 +25,9 @@ export function useModal() {
   return context;
 }
 
+/**
+ * Context Provider for modal
+ */
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [modalData, setModalData] = useState<ModalData | null>(null);
 
