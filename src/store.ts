@@ -6,17 +6,10 @@ const store: Store = {
   tasks: [
     {
       taskId: 1,
-      priority: "1",
+      priority: "3",
       taskStatus: TaskStatus.UNASSIGNED,
-      assignedto: "1",
-      tasksummary: "1",
-    },
-    {
-      taskId: 2,
-      priority: "2",
-      taskStatus: TaskStatus.MEDIUM,
-      assignedto: "2",
-      tasksummary: "2",
+      assignedto: "Everyone",
+      tasksummary: "Submit timesheets",
     },
   ],
 };
