@@ -1,5 +1,6 @@
 # Task Manager
 
+A simple task manager built with React and TypeScript.
 Uses React, Vite, TypeScript and Tailwind.
 
 Simply run:
@@ -12,6 +13,6 @@ npm run dev
 Then open:
 http://localhost:5173/
 
-### Composition
+#### Composition
 
 State management logic is in `store.ts` and this is provided to all components via the Context API. This would need extending to syncronise with server/db state.
