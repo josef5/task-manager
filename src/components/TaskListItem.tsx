@@ -14,22 +14,32 @@ const TaskListItem: React.FunctionComponent<TaskContainerProps> = ({
   const { openModal } = useModal();
 
   return (
-    <>
+    <div className="border-solid border-[0px] border-gray-500 rounded-lg p-5 my-5 bg-white/[.05]">
       {/* <pre>{JSON.stringify(task, null, 2)}</pre> */}
-      <div>Task Id: {task.taskId}</div>
-      <div>Summary: {task.tasksummary}</div>
-      <div>Priority: {task.priority}</div>
-      <div>Assigned to: {task.assignedto}</div>
-      <div>Status: {task.taskStatus}</div>
-      <button
-        onClick={() => openModal({ type: ModalType.EDIT_EXISTING_TASK, task })}
-      >
-        Edit
-      </button>
-      <button onClick={async () => setStore(await deleteTask(task.taskId))}>
-        Delete
-      </button>
-    </>
+      <h3 className="text-xl mb-3">{task.tasksummary}</h3>
+      <div className="flex items-center text-sm text-gray-400">
+        <div className="flex-1">Task Id: {task.taskId}</div>
+        <div className="flex-1">Priority: {task.priority}</div>
+        <div className="flex-1">Assigned to: {task.assignedto}</div>
+        <div className="flex-1">Status: {task.taskStatus}</div>
+      </div>
+      <div className="flex justify-start">
+        <button
+          className="min-w-24 mt-5 bg-white/[.05] px-3 py-2 mr-5 rounded-lg border-solid border-[0px] border-gray-500 text-sm hover:ring-1 ring-blue-500"
+          onClick={() =>
+            openModal({ type: ModalType.EDIT_EXISTING_TASK, task })
+          }
+        >
+          Edit
+        </button>
+        <button
+          className="min-w-24 mt-5 bg-white/[.05] px-3 py-2 mr-5 rounded-lg border-solid border-[0px] border-gray-500 text-sm hover:ring-1 ring-red-500"
+          onClick={async () => setStore(await deleteTask(task.taskId))}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
   );
 };
 
