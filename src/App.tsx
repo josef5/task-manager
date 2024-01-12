@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <ModalProvider>
-        <TaskList />
         <Modal />
+        <TaskList />
       </ModalProvider>
     </>
   );
